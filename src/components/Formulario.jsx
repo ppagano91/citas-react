@@ -2,16 +2,24 @@ import { useState, useEffect } from "react"
 
 const Formulario = () => {
   // Hooks
-  const [mascota, setMascota] = useState("")
-  const [propietario, setPropietario] = useState("")
-  const [email, setEmail] = useState("")
-  const [fecha, setFecha] = useState("")
-  const [sintomas, setSintomas] = useState("")
+  const [mascota, setMascota] = useState("");
+  const [propietario, setPropietario] = useState("");
+  const [email, setEmail] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [sintomas, setSintomas] = useState("");
+
+  const [error, setError] = useState(false)
 
   const handleSUmbit = (e)=> {
     e.preventDefault();
-    console.log(e.target.value)
-  }
+
+    if([mascota, propietario, email, fecha, sintomas].includes('')){
+      console.log("Existen campos vacíos");
+      setError(true);
+      return;
+    }
+    setError(false);
+    }
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
@@ -25,6 +33,11 @@ const Formulario = () => {
         className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'
         onSubmit={(e)=>handleSUmbit(e)}
         >
+          {error &&
+          (<div className="bg-red-800 text-white text-center p-3 uppercase font-bold rounded">
+              <p>Todos los campos son obligatorios</p>
+            </div>)}
+          
         <div className='mb-5'>
           <label htmlFor="mascota" className='block text-gray-700 uppercase font-bold'>Nombre Mascota</label>
           <input
