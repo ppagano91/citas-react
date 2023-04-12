@@ -27,7 +27,7 @@ const Paciente = ({paciente,setPaciente,eliminarPaciente}) => {
         </p>
 
         <p className="font-bold mb-3 text-gray-700 uppercase">
-          Fecha Alta: {""}
+          Fecha Cita: {""}
           <span className="font-normal normal-case">{fecha}</span>
         </p>
 
