@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const Formulario = () => {
+const Formulario = ({pacientes, setPacientes}) => {
   // Hooks
   const [mascota, setMascota] = useState("");
   const [propietario, setPropietario] = useState("");
@@ -19,6 +19,23 @@ const Formulario = () => {
       return;
     }
     setError(false);
+
+    const paciente = {
+      mascota,
+      propietario,
+      email, 
+      fecha,
+      sintomas
+    }
+
+    setPacientes([...pacientes, paciente])
+
+    // Reiniciar formulario
+    setMascota("")
+    setPropietario("")
+    setEmail("")
+    setFecha("")
+    setSintomas("")
     }
 
   return (
