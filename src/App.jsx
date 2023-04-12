@@ -14,11 +14,13 @@ function App() {
       <Header></Header>
       <div className="mt-12 md:flex">
         <Formulario
+          paciente={paciente}
           pacientes={pacientes}
           setPacientes={setPacientes}
         />
-        <ListadoPacientes
+        <ListadoPacientes      
           pacientes={pacientes}
+          paciente={paciente}
           setPaciente={setPaciente}
         />
       </div>
