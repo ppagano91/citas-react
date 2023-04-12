@@ -52,7 +52,7 @@ const Formulario = ({pacientes, setPacientes}) => {
         onSubmit={(e)=>handleSUmbit(e)}
         >
           {error &&
-          <Error mensaje="Todos los campos son obligatorios"/>}
+          <Error><p>Todos los campos son obligatorios</p></Error>}
           
         <div className='mb-5'>
           <label htmlFor="mascota" className='block text-gray-700 uppercase font-bold'>Nombre Mascota</label>
