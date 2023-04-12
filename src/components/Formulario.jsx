@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Error from "./Error";
 
-const Formulario = ({pacientes, paciente, setPacientes}) => {
+const Formulario = ({pacientes, paciente, setPacientes, setPaciente}) => {
   // Hooks
   const [mascota, setMascota] = useState("");
   const [propietario, setPropietario] = useState("");
@@ -41,16 +41,29 @@ const Formulario = ({pacientes, paciente, setPacientes}) => {
     }
     setError(false);
 
-    const paciente = {
+    // Crea o actualiza paciente
+    const ObjetoPaciente = {
       mascota,
       propietario,
       email, 
       fecha,
       sintomas,
-      id:generarId()
     }
 
-    setPacientes([...pacientes, paciente])
+    if (paciente.id){
+      ObjetoPaciente.id=paciente.id;
+
+      const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? ObjetoPaciente : pacienteState)
+
+      setPacientes(pacientesActualizados)
+      setPaciente({})
+
+    }
+    else{
+      ObjetoPaciente.id = generarId();
+      setPacientes([...pacientes, ObjetoPaciente]);
+    }
+
 
     // Reiniciar formulario
     setMascota("")
@@ -141,7 +154,7 @@ const Formulario = ({pacientes, paciente, setPacientes}) => {
         <input 
           type="submit" 
           className='bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors' 
-          value="Agregar Paciente"
+          value={paciente.id? "Editar Paciente":"Agregar Paciente"}
         />
         
       </form>
